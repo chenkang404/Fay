@@ -26,17 +26,17 @@
     "items": [
         {
             "QnA": "qa_demo.xlsx",
-            "demoVideo": "C:/Demo.mp4",
-            "enabled": false,
+            "demoVideo": "",
+            "enabled": true,
             "explain": {
-                "character": "",
-                "discount": "",
-                "intro": "",
-                "price": "",
-                "promise": "",
-                "usage": ""
+                "character": "\u4e00\u5929\u4e00\u4e2a\u6211\uff0c\u533b\u751f\u539f\u8fdc\u79bb\u6211",
+                "discount": "20\u57575\u65a4",
+                "intro": "\u5ef6\u5b89\u82f9\u679c",
+                "price": "10\u57572\u65a4",
+                "promise": "\u5f88\u751c",
+                "usage": "\u9910\u540e"
             },
-            "name": ""
+            "name": "\u82f9\u679c"
         }
     ],
     "source": {
@@ -46,7 +46,7 @@
         },
         "record": {
             "device": "",
-            "enabled": false
+            "enabled": true
         }
     }
 }

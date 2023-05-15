@@ -84,6 +84,8 @@ class FeiFei:
         self.last_speak_data = ''
         self.interactive = []
         self.sleep = False
+        self.keep_play = True
+        self.stop_time = time.time()
         self.__running = True
         self.sp.connect()  # 预连接
         self.last_quest_time = time.time()
@@ -220,6 +222,7 @@ class FeiFei:
         script_index = 0
         while self.__running:
             time.sleep(0.8)
+            print(f"speaking state:{self.speaking}")
             if self.speaking or self.sleep:
                 continue
 
@@ -296,6 +299,11 @@ class FeiFei:
                     MyThread(target=self.__say, args=['interact']).start()
                 else:
                     i = 0
+                    space_time  = math.floor((time.time() - self.stop_time))
+                    if not self.keep_play and space_time<30:
+                        continue
+                    elif not self.keep_play and space_time>30:
+                        self.keep_play = True
                     self.interactive.clear()
                     config_items = config_util.config["items"]
                     items = []
@@ -314,7 +322,12 @@ class FeiFei:
                             script_index = 0
                             if self.item_index >= len(items):
                                 self.item_index = 0
+                                self.keep_play=False
+                                self.stop_time = time.time()
+                                print("商品播放一遍，休息30秒")
+                                continue
                             explain_key = self.__get_explain_from_index(script_index)
+                        item = items[self.item_index]
                         explain = item["explain"][explain_key]
                         if len(explain) > 0:
                             self.a_msg = explain
